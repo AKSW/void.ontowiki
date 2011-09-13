@@ -6,6 +6,7 @@
 > cataloging and archiving of datasets.
 
 This extension should be able:
+
   * to generate VoID statements automatically where possible, and
   * to suggest additional content based on a suggestion-list
 
