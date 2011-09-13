@@ -1,4 +1,4 @@
-# VoiD creation / suggestion extension for OntoWiki
+# VoiD creation / suggestion extension for OntoWiki [edit this file](https://github.com/AKSW/void.ontowiki/edit/master/README.md)
 
 > VoID is an RDF Schema vocabulary for expressing metadata about RDF
 > datasets. It is intended as a bridge between the publishers and
