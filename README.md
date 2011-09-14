@@ -57,7 +57,18 @@ This extension should be able:
     }
 
 ### Creator
+    
+    PREFIX dc: <http://purl.org/dc/elements/1.1/>
+    PREFIX dcterms: <http://purl.org/dc/terms/>
+    PREFIX void: <http://rdfs.org/ns/void#>
 
+    ASK {
+     ?s a void:Dataset .
+     { ?s dc:creator ?creator1 }
+     UNION
+     { ?s dcterms:creator ?creator2}
+    }
+    
 ### Highly suggested
 
 ### Nice To Have
