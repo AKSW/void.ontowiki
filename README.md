@@ -19,6 +19,24 @@ This extension should be able:
     SELECT (COUNT(*) AS ?no) {
       ?s ?p ?o .
     }
+   
+#### void:entities
+
+    SELECT (COUNT(DISTINCT ?s) AS ?no) WHERE {
+      ?s a [] .
+    }
+    
+#### void:classes
+
+    SELECT (COUNT(DISTINCT ?o) AS ?no) WHERE {
+      ?s a ?o .
+    }
+    
+### void:properties
+
+    SELECT (COUNT(DISTINCT ?p) AS ?no) WHERE {
+      ?s ?p ?o .
+    }
     
 ### Hosting / Feature description
 
