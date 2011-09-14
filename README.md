@@ -51,9 +51,9 @@ This extension should be able:
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
     
     ASK {
-      { ?s cc:license ?o1 }
+      { ?s cc:license ?licence }
       UNION
-      { ?s dc:rights ?o2 }
+      { ?s dc:rights ?licence }
     }
 
 ### Creator
@@ -64,11 +64,29 @@ This extension should be able:
 
     ASK {
      ?s a void:Dataset .
-     { ?s dc:creator ?creator1 }
+     { ?s dc:creator ?creator }
      UNION
-     { ?s dcterms:creator ?creator2}
+     { ?s dcterms:creator ?creator }
+     UNION
+     { ?s dcterms:contributor ?creator }
+     UNION
+     { ?s dcterms:maintainer ?creator }
+
     }
     
 ### Highly suggested
+
+#### Title
+    
+    PREFIX dc: <http://purl.org/dc/elements/1.1/>
+    PREFIX dcterms: <http://purl.org/dc/terms/>
+    PREFIX void: <http://rdfs.org/ns/void#>
+    
+    ASK {
+      ?s a void:Dataset .
+      { ?s dcterms:title ?title }
+      UNION
+      { ?s dc:title ?title }
+    }
 
 ### Nice To Have
