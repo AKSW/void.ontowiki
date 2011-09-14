@@ -45,6 +45,30 @@ This extension should be able:
 
 ## Suggested Content
 
+### Licence
+
+    PREFIX cc: <http://creativecommons.org/ns#>
+    PREFIX dc: <http://purl.org/dc/elements/1.1/>
+    
+    ASK {
+      { ?s cc:license ?o1 }
+      UNION
+      { ?s dc:rights ?o2 }
+    }
+
+### Creator
+    
+    PREFIX dc: <http://purl.org/dc/elements/1.1/>
+    PREFIX dcterms: <http://purl.org/dc/terms/>
+    PREFIX void: <http://rdfs.org/ns/void#>
+
+    ASK {
+     ?s a void:Dataset .
+     { ?s dc:creator ?creator1 }
+     UNION
+     { ?s dcterms:creator ?creator2}
+    }
+    
 ### Highly suggested
 
 ### Nice To Have
