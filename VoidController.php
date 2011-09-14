@@ -42,5 +42,84 @@ class VoidController extends OntoWiki_Controller_Component
 
         // disable layout
         $this->_helper->layout()->disableLayout();
+
+        // First we need to create an array with the statements to be added.
+        // Have a look at here: http://docs.api.talis.com/platform-api/output-types/rdf-json
+        $statements = array();
+
+        // We need the graph URI
+        $graph = OntoWiki::getInstance()->selectedModel;
+        $graphUri = $graph->getModelIri();
+
+        // We need a reference to the store for SPARQL and adding the statements.
+        $store = Erfurt_App::getInstance()->getStore();
+
+        // Now we add the statements to the array
+
+        // 1. Add a statement graph a void:Dataset
+        $statements[$graphUri] = array();
+        $statements[$graphUri][EF_RDF_TYPE] = array();
+        $statements[$graphUri][EF_RDF_TYPE][] = array(
+            'type'  => 'uri',
+            'value' => 'http://rdfs.org/ns/void#Dataset'
+        );
+
+        // 2. Add a statement for the dump
+        $baseUri = OntoWiki::getInstance()->urlBase;
+        $dumpUri = $baseUri . '/model/export/?f=rdfxml&m=' . urlencode($graphUri);
+        // TODO
+
+        // 3. Add a statement for the SPARQL endpoint
+        $endpointUri = $baseUri . '/service/sparql';
+        // TODO
+
+        // 4. void:triples
+        $sparql = 'TODO';
+        $result = $graph->sparqlQuery($sparql);
+        // TODO
+
+        // 5. void:entities
+        $sparql = 'TODO';
+        $result = $graph->sparqlQuery($sparql);
+        // TODO
+
+        // 6. void:classes
+        $sparql = 'TODO';
+        $result = $graph->sparqlQuery($sparql);
+        // TODO
+
+        // 7. void:properties
+        $sparql = 'TODO';
+        $result = $graph->sparqlQuery($sparql);
+        // TODO
+        
+        // Now we add the statements to the store.
+        $store->addMultipleStatements($graphUri, $statements);
+    }
+
+    public function suggestAction()
+    {
+        // this action needs no view
+        $this->_helper->viewRenderer->setNoRender();
+
+        // disable layout
+        $this->_helper->layout()->disableLayout();
+
+        // We need the graph URI
+        $graph = OntoWiki::getInstance()->selectedModel;
+        $graphUri = $graph->getModelIri();
+
+        // We need a reference to the store for SPARQL and adding the statements.
+        $store = Erfurt_App::getInstance()->getStore();
+
+        // SPARQL queries go here...
+        $sparql = '';
+        $result = $graph->sparqlQuery($sparql);
+        // TODO
+
+        $suggestions = array();
+        // TODO
+
+        return json_encode($suggestions);
     }
 }
