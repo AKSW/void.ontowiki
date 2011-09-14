@@ -45,6 +45,19 @@ This extension should be able:
 
 ## Suggested Content
 
+### Licence
+
+    PREFIX cc: <http://creativecommons.org/ns#>
+    PREFIX dc: <http://purl.org/dc/elements/1.1/>
+    
+    ASK {
+      { ?s cc:license ?o1 }
+      UNION
+      { ?s dc:rights ?o2 }
+    }
+
+### Creator
+
 ### Highly suggested
 
 ### Nice To Have
