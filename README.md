@@ -14,6 +14,12 @@ This extension should be able:
 
 ### Statistics
 
+#### void:triples
+
+    SELECT (COUNT(*) AS ?no) {
+      ?s ?p ?o .
+    }
+    
 ### Hosting / Feature description
 
 ### Linksets
