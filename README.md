@@ -98,6 +98,8 @@ To be retrieved via OntoWiki.
 
 ### Linksets
 
+    
+#### void:target
 
 ## Suggested Content
 
