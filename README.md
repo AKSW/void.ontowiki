@@ -47,6 +47,10 @@ This extension should be able:
 
 ### Licence
 
+__Preferred property:__ `cc:license`
+__Alternative properties:__
+* `dc:rights`
+
     PREFIX cc: <http://creativecommons.org/ns#>
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
     
@@ -57,7 +61,12 @@ This extension should be able:
     }
 
 ### Creator
-    
+
+__Preferred property:__ `dcterms:creator`
+__Alternative properties:__
+* `dc:creator`
+* `dcterms:contributor`
+
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
     PREFIX dcterms: <http://purl.org/dc/terms/>
     PREFIX void: <http://rdfs.org/ns/void#>
@@ -69,15 +78,21 @@ This extension should be able:
      { ?s dcterms:creator ?creator }
      UNION
      { ?s dcterms:contributor ?creator }
-     UNION
-     { ?s dcterms:maintainer ?creator }
-
     }
-    
+
+### Description
+
+__Preferred property:__ `dcterms:description`
+
 ### Highly suggested
 
 #### Title
-    
+
+Preferred property: `dcterms:title`
+Alternative properties:
+* `dc:title`
+* `rdfs:label`
+
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
     PREFIX dcterms: <http://purl.org/dc/terms/>
     PREFIX void: <http://rdfs.org/ns/void#>
