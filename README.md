@@ -14,13 +14,13 @@ This extension should be able:
   
 The following prefixes are used in this document:
 
-  @cc:       <http://creativecommons.org/ns#>
-  @dc:       <http://purl.org/dc/elements/1.1/>
-  @dcterms:  <http://purl.org/dc/terms/>
-  @foaf:     <http://xmlns.com/foaf/0.1/>
-  @rdfs:     <http://www.w3.org/2000/01/rdf-schema#>
-  @void:     <http://rdfs.org/ns/void#>
-  @wv:       <http://vocab.org/waiver/terms/>
+    @cc:       <http://creativecommons.org/ns#>
+    @dc:       <http://purl.org/dc/elements/1.1/>
+    @dcterms:  <http://purl.org/dc/terms/>
+    @foaf:     <http://xmlns.com/foaf/0.1/>
+    @rdfs:     <http://www.w3.org/2000/01/rdf-schema#>
+    @void:     <http://rdfs.org/ns/void#>
+    @wv:       <http://vocab.org/waiver/terms/>
 
 ## Generated Content
 
@@ -67,6 +67,7 @@ __Alternative properties:__
 
 *  `dc:rights`
 *  `wv:norms`
+*  `wv:waiver`
 
     PREFIX cc: <http://creativecommons.org/ns#>
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
@@ -154,3 +155,11 @@ __Preferred property:__  `dcterms:created`
 #### Homepage of the publisher
 
 __Preferred property:__ `foaf:homepage`
+
+#### Subject described by the dataset
+
+__Preferred property:__ `dcterms:subject`
+
+__Alternative properties:__
+
+*  `dc:subject`
