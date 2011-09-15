@@ -5,47 +5,128 @@
 > users of RDF data, with applications ranging from data discovery to
 > cataloging and archiving of datasets.
 
+Presentation slides: http://bit.ly/void-ontowiki
+
 This extension should be able:
 
   * to generate VoID statements automatically where possible, and
   * to suggest additional content based on a suggestion-list
+  
+The following prefixes are used in this document:
+
+    @cc:       <http://creativecommons.org/ns#>
+    @dc:       <http://purl.org/dc/elements/1.1/>
+    @dcterms:  <http://purl.org/dc/terms/>
+    @foaf:     <http://xmlns.com/foaf/0.1/>
+    @rdfs:     <http://www.w3.org/2000/01/rdf-schema#>
+    @void:     <http://rdfs.org/ns/void#>
+    @wv:       <http://vocab.org/waiver/terms/>
 
 ## Generated Content
 
 ### Statistics
 
-#### void:triples
+#### void:classes
 
-    SELECT (COUNT(*) AS ?no) {
+SPARQL query:
+
+    SELECT (COUNT(DISTINCT ?o) AS ?no) WHERE {
+      ?s a ?o .
+    }
+
+#### void:distinctObjects
+
+SPARQL query:
+
+    SELECT (COUNT(DISTINCT ?o) AS ?no) WHERE {
       ?s ?p ?o .
     }
-   
+    
+#### void:distinctSubjects
+
+SPARQL query:
+
+    SELECT (COUNT(DISTINCT ?s) AS ?no) WHERE {
+      ?s ?p ?o .
+    }
+    
 #### void:entities
+
+SPARQL query:
 
     SELECT (COUNT(DISTINCT ?s) AS ?no) WHERE {
       ?s a [] .
     }
     
-#### void:classes
+#### void:properties
 
-    SELECT (COUNT(DISTINCT ?o) AS ?no) WHERE {
-      ?s a ?o .
-    }
-    
-### void:properties
+SPARQL query:
 
     SELECT (COUNT(DISTINCT ?p) AS ?no) WHERE {
       ?s ?p ?o .
     }
     
+#### void:triples
+
+SPARQL query:
+
+    SELECT (COUNT(*) AS ?no) {
+      ?s ?p ?o .
+    }
+    
+#### void:vocabulary
+
+To be retrieved via OntoWiki.
+    
 ### Hosting / Feature description
+
+#### void:dataDump
+
+To be retrieved via OntoWiki.
+
+#### void:feature
+
+List of available RDF searializations to be retrived via OntoWiki.
+
+#### void:openSearchDescription
+
+To be retrieved via OntoWiki.
+
+#### void:sparqlEndpoint
+
+To be retrieved via OntoWiki.
+
+#### void:subset
+
+List all named graphs in a given OntoWiki dataset.
+
+#### void:uriLookupEndpoint
+
+To be retrieved via OntoWiki.
+
+#### void:uriSpace
+
+To be retrieved via OntoWiki.
 
 ### Linksets
 
-
 ## Suggested Content
 
+The suggested content is based on the recommendation from the [VoID specification](http://www.w3.org/TR/void/#dublin-core) for dataset metadata. For each item there are listed synonym sets (synset) of RDF properties, in which one property is designed as the *preferred* property and the rest are the *alternatives*. The extension checks if one of the properties in a set has a value for a particular dataset. If no value is found, the extension suggests to add it for the preferred property from a set.
+
+### Example representing the dataset
+
+*  __Preferred property:__ `void:exampleResource`
+
 ### Licence
+
+* __Preferred property:__ `cc:license`
+* __Alternative properties:__
+    * `dc:rights`
+    * `wv:norms`
+    * `wv:waiver`
+
+SPARQL query:
 
     PREFIX cc: <http://creativecommons.org/ns#>
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
@@ -57,7 +138,14 @@ This extension should be able:
     }
 
 ### Creator
-    
+
+* __Preferred property:__ `dcterms:creator`
+* __Alternative properties:__
+    * `dc:creator`
+    * `dcterms:contributor`
+
+SPARQL query:
+
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
     PREFIX dcterms: <http://purl.org/dc/terms/>
     PREFIX void: <http://rdfs.org/ns/void#>
@@ -69,15 +157,45 @@ This extension should be able:
      { ?s dcterms:creator ?creator }
      UNION
      { ?s dcterms:contributor ?creator }
-     UNION
-     { ?s dcterms:maintainer ?creator }
-
     }
-    
+
+### Description
+
+*  __Preferred property:__ `dcterms:description`
+*  __Alternative properties:__
+   *  `rdfs:comment`
+
+### Publisher
+
+*  __Preferred property:__ `dcterms:publisher`
+
+### Source of the dataset
+
+*  __Preferred property:__ `dcterms:source`
+
+### Date
+
+*  __Preferred property:__ `dcterms:date`
+
+### Date of issue
+
+*  __Preferred property:__ `dcterms:issued`
+
+### Date of modification
+
+*  __Preferred property:__ `dcterms:modified`
+
 ### Highly suggested
 
 #### Title
-    
+
+*  __Preferred property:__ `dcterms:title`
+*  __Alternative properties:__
+    *  `dc:title`
+    *  `rdfs:label`
+
+SPARQL query:
+
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
     PREFIX dcterms: <http://purl.org/dc/terms/>
     PREFIX void: <http://rdfs.org/ns/void#>
@@ -89,4 +207,27 @@ This extension should be able:
       { ?s dc:title ?title }
     }
 
+#### Date created
+
+*  __Preferred property:__  `dcterms:created`
+
 ### Nice To Have
+
+#### Homepage of the publisher
+
+*  __Preferred property:__ `foaf:homepage`
+
+#### Root resource
+
+*  __Preferred property:__ `void:rootResource`
+
+#### Subject described by the dataset
+
+*  __Preferred property:__ `dcterms:subject`
+*  __Alternative properties:__
+    *  `dc:subject`
+    *  `foaf:primaryTopic`
+    
+#### URI pattern of the dataset
+
+*  __Preferred property:__ `void:uriRegexPattern`
