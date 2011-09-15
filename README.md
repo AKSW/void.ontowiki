@@ -11,6 +11,16 @@ This extension should be able:
 
   * to generate VoID statements automatically where possible, and
   * to suggest additional content based on a suggestion-list
+  
+The following prefixes are used in this document:
+
+  @cc:       <http://creativecommons.org/ns#>
+  @dc:       <http://purl.org/dc/elements/1.1/>
+  @dcterms:  <http://purl.org/dc/terms/>
+  @foaf:     <http://xmlns.com/foaf/0.1/>
+  @rdfs:     <http://www.w3.org/2000/01/rdf-schema#>
+  @void:     <http://rdfs.org/ns/void#>
+  @wv:       <http://vocab.org/waiver/terms/>
 
 ## Generated Content
 
@@ -52,9 +62,11 @@ The suggested content is based on the recommendation from the [VoID specificatio
 ### Licence
 
 __Preferred property:__ `cc:license`
+
 __Alternative properties:__
 
 *  `dc:rights`
+*  `wv:norms`
 
     PREFIX cc: <http://creativecommons.org/ns#>
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
@@ -68,6 +80,7 @@ __Alternative properties:__
 ### Creator
 
 __Preferred property:__ `dcterms:creator`
+
 __Alternative properties:__
 
 *  `dc:creator`
@@ -114,8 +127,9 @@ __Preferred property:__ `dcterms:modified`
 
 #### Title
 
-Preferred property: `dcterms:title`
-Alternative properties:
+__Preferred property:__ `dcterms:title`
+
+__Alternative properties:__
 
 *  `dc:title`
 *  `rdfs:label`
@@ -136,3 +150,7 @@ Alternative properties:
 __Preferred property:__  `dcterms:created`
 
 ### Nice To Have
+
+#### Homepage of the publisher
+
+__Preferred property:__ `foaf:homepage`
