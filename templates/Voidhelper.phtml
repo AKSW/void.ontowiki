@@ -15,24 +15,41 @@ $(document).ready(function() {
     var createUrl  = urlBase + 'void/create';
     var suggestUrl = urlBase + 'void/suggest';
 
+    // this is the callback for the creation ajax call which outputs a success
+    // message only
+    function renderCreation(jsonData) {
+        $('#results').removeClass('is-processing')
+        $('#results').empty().hide();
+        if (jsonData == "success") {
+            content = '<p class="messagebox success">VoiD description successfully created.';
+        } else {
+            content = '<p class="messagebox error">Could not create the VoiD description.';
+        }
+        $('#results').append(content).slideDown();
+    }
+
+    // this is the callback for the suggest ajax call which outputs the
+    // different categories
     function renderSuggestions(jsonData) {
-        $('#results').empty();
+        $('#results').removeClass('is-processing')
+        $('#results').empty().hide();
         jQuery.each(jsonData, function() {
             var content = '';
             jQuery.each(this.properties, function() {
                 content += '&rarr;&nbsp;<a title="'+ this.uri +'" href="'+ this.url +'">' + this.label + '</a> ';
             } );
             content = '<p class="'+ this.class +'">' + this.label + ':<br/> '+ content +'<p>';
-            $('#results').append(content);
-
-            //$("#" + this).text("My id is " + this + ".");
-            //return (this != "four"); // will stop running to skip "five"
+            $('#results').append(content).slideDown();
         });
     }
 
     $('#void-suggest').click(function () {
-        //$(this).addClass('is-processing');
+        $('#results').addClass('is-processing')
         $.getJSON(suggestUrl, function(jsonData) {renderSuggestions(jsonData); });
+    });
+    $('#void-create').click(function () {
+        $('#results').addClass('is-processing')
+        $.getJSON(createUrl, function(jsonData) {renderCreation(jsonData); });
     });
 });
 </script>

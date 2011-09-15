@@ -148,13 +148,12 @@ class VoidController extends OntoWiki_Controller_Component
 
         // Now we add the statements to the store.
         $statements = $newGraph->getStatements();
-        //var_dump($statements); exit;
         $this->graph->addMultipleStatements($statements);
         $versioning->endAction();
 
         // send the response
         $this->response->setHeader('Content-Type', 'application/json');
-        $this->response->setBody(json_encode(true));
+        $this->response->setBody(json_encode('success'));
         $this->response->sendResponse();
         exit;
     }
