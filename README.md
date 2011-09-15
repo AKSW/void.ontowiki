@@ -5,7 +5,7 @@
 > users of RDF data, with applications ranging from data discovery to
 > cataloging and archiving of datasets.
 
-Presentation slides: https://docs.google.com/present/edit?id=0AdCkvqPnyU_qZGRjM3d3YzVfMTFobXpqcnRkZA&hl=es
+Presentation slides: http://bit.ly/void-ontowiki
 
 This extension should be able:
 
@@ -28,11 +28,15 @@ The following prefixes are used in this document:
 
 #### void:classes
 
+SPARQL query:
+
     SELECT (COUNT(DISTINCT ?o) AS ?no) WHERE {
       ?s a ?o .
     }
 
 #### void:distinctObjects
+
+SPARQL query:
 
     SELECT (COUNT(DISTINCT ?o) AS ?no) WHERE {
       ?s ?p ?o .
@@ -40,23 +44,31 @@ The following prefixes are used in this document:
     
 #### void:distinctSubjects
 
+SPARQL query:
+
     SELECT (COUNT(DISTINCT ?s) AS ?no) WHERE {
       ?s ?p ?o .
     }
     
 #### void:entities
 
+SPARQL query:
+
     SELECT (COUNT(DISTINCT ?s) AS ?no) WHERE {
       ?s a [] .
     }
     
-### void:properties
+#### void:properties
+
+SPARQL query:
 
     SELECT (COUNT(DISTINCT ?p) AS ?no) WHERE {
       ?s ?p ?o .
     }
     
 #### void:triples
+
+SPARQL query:
 
     SELECT (COUNT(*) AS ?no) {
       ?s ?p ?o .
@@ -98,12 +110,9 @@ To be retrieved via OntoWiki.
 
 ### Linksets
 
-    
-#### void:target
-
 ## Suggested Content
 
-The suggested content is based on the recommendation from the [VoID specification](http://www.w3.org/TR/void/#dublin-core).
+The suggested content is based on the recommendation from the [VoID specification](http://www.w3.org/TR/void/#dublin-core) for dataset metadata. For each item there are listed synonym sets (synset) of RDF properties, in which one property is designed as the *preferred* property and the rest are the *alternatives*. The extension checks if one of the properties in a set has a value for a particular dataset. If no value is found, the extension suggests to add it for the preferred property from a set.
 
 ### Example representing the dataset
 
@@ -111,12 +120,13 @@ The suggested content is based on the recommendation from the [VoID specificatio
 
 ### Licence
 
-*  __Preferred property:__ `cc:license`
-*  __Alternative properties:__
-    *  `dc:rights`
-    *  `wv:norms`
-    *  `wv:waiver`
+* __Preferred property:__ `cc:license`
+* __Alternative properties:__
+    * `dc:rights`
+    * `wv:norms`
+    * `wv:waiver`
 
+SPARQL query:
 
     PREFIX cc: <http://creativecommons.org/ns#>
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
@@ -129,10 +139,12 @@ The suggested content is based on the recommendation from the [VoID specificatio
 
 ### Creator
 
-*  __Preferred property:__ `dcterms:creator`
-*  __Alternative properties:__
-    *  `dc:creator`
-    *  `dcterms:contributor`
+* __Preferred property:__ `dcterms:creator`
+* __Alternative properties:__
+    * `dc:creator`
+    * `dcterms:contributor`
+
+SPARQL query:
 
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
     PREFIX dcterms: <http://purl.org/dc/terms/>
@@ -182,6 +194,7 @@ The suggested content is based on the recommendation from the [VoID specificatio
     *  `dc:title`
     *  `rdfs:label`
 
+SPARQL query:
 
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
     PREFIX dcterms: <http://purl.org/dc/terms/>
