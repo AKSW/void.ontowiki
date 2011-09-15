@@ -5,6 +5,8 @@
 > users of RDF data, with applications ranging from data discovery to
 > cataloging and archiving of datasets.
 
+Presentation slides: https://docs.google.com/present/edit?id=0AdCkvqPnyU_qZGRjM3d3YzVfMTFobXpqcnRkZA&hl=es
+
 This extension should be able:
 
   * to generate VoID statements automatically where possible, and
