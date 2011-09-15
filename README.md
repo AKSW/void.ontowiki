@@ -47,11 +47,14 @@ This extension should be able:
 
 ## Suggested Content
 
+The suggested content is based on the recommendation from the [VoID specification](http://www.w3.org/TR/void/#dublin-core).
+
 ### Licence
 
 __Preferred property:__ `cc:license`
 __Alternative properties:__
-* `dc:rights`
+
+*  `dc:rights`
 
     PREFIX cc: <http://creativecommons.org/ns#>
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
@@ -66,8 +69,9 @@ __Alternative properties:__
 
 __Preferred property:__ `dcterms:creator`
 __Alternative properties:__
-* `dc:creator`
-* `dcterms:contributor`
+
+*  `dc:creator`
+*  `dcterms:contributor`
 
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
     PREFIX dcterms: <http://purl.org/dc/terms/>
@@ -86,14 +90,35 @@ __Alternative properties:__
 
 __Preferred property:__ `dcterms:description`
 
+### Publisher
+
+__Preferred property:__ `dcterms:publisher`
+
+### Source of the dataset
+
+__Preferred property:__ `dcterms:source`
+
+### Date
+
+__Preferred property:__ `dcterms:date`
+
+### Date of issue
+
+__Preferred property:__ `dcterms:issued`
+
+### Date of modification
+
+__Preferred property:__ `dcterms:modified`
+
 ### Highly suggested
 
 #### Title
 
 Preferred property: `dcterms:title`
 Alternative properties:
-* `dc:title`
-* `rdfs:label`
+
+*  `dc:title`
+*  `rdfs:label`
 
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
     PREFIX dcterms: <http://purl.org/dc/terms/>
@@ -105,5 +130,9 @@ Alternative properties:
       UNION
       { ?s dc:title ?title }
     }
+
+#### Date created
+
+__Preferred property:__  `dcterms:created`
 
 ### Nice To Have
