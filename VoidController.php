@@ -223,18 +223,20 @@ class VoidController extends OntoWiki_Controller_Component
      */
     private function getSuggestions()
     {
-        // fetch all these titles from the helper
+        // use the titleHelper
         $suggestions = $this->suggestions;
         foreach ($suggestions as $categoryName => $category) {
             foreach ($category as $propertyUri => $property) {
+                // fetch all these property titles from the helper
                 $label = $this->titleHelper->getTitle($propertyUri);
+                // and fill it into the property stdClass objects
                 $suggestions[$categoryName][$propertyUri]->label = $label;
             }
         }
 
         // return structure consists of categories and suggestions
-        $return = array();
-        $return['categories'] = $this->_privateConfig->categories->toArray();
+        $return                = array();
+        $return['categories']  = $this->_privateConfig->categories->toArray();
         $return['suggestions'] = $suggestions;
         return $return;
     }
@@ -265,8 +267,8 @@ class VoidController extends OntoWiki_Controller_Component
             if (!$memModel->hasSP($graphUri, $s->preferred)) {
                 // preferred property is not available, so try alternatives
                 $foundAlternative = false;
-                // go through alternatives and check them too
-                if ( (isset($s->alternatives)) && (is_array($s->alternatives)) ) {
+                // go through alternatives and check them too (if exist)
+                if (isset($s->alternatives)) {
                     foreach ($s->alternatives as $alternative) {
                         if ($memModel->hasSP($graphUri, $alternative)) {
                             $foundAlternative = true;
