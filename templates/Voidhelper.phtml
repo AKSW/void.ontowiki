@@ -12,8 +12,20 @@
 ?>
 <script type="text/javascript">
 $(document).ready(function() {
-    var createUrl  = urlBase + 'void/create';
-    var suggestUrl = urlBase + 'void/suggest';
+    var voidUrl  = urlBase + 'void/';
+
+    // this is the callback for the creation ajax call which outputs a success
+    // message only
+    function renderCleaning(jsonData) {
+        $('#results').removeClass('is-processing')
+        $('#results').empty().hide();
+        if (jsonData == "success") {
+            content = '<p class="messagebox success">VoiD description successfully removed.';
+        } else {
+            content = '<p class="messagebox error">Could not remove the VoiD description.';
+        }
+        $('#results').append(content).slideDown();
+    }
 
     // this is the callback for the creation ajax call which outputs a success
     // message only
@@ -33,23 +45,35 @@ $(document).ready(function() {
     function renderSuggestions(jsonData) {
         $('#results').removeClass('is-processing')
         $('#results').empty().hide();
-        jQuery.each(jsonData, function() {
-            var content = '';
-            jQuery.each(this.properties, function() {
+        var content = '';
+        var categories  = jsonData.categories;
+        var suggestions = jsonData.suggestions;
+
+        // go through property categories
+        jQuery.each(suggestions, function(categoryName, properties) {
+            var categoryClass = categories[categoryName].class;
+            var categoryText  = categories[categoryName].text;
+            content += '<p class="messagebox '+ categoryClass +'">' + categoryText + '<br/> ';
+            // go through properties
+            jQuery.each(properties, function() {
                 content += '&rarr;&nbsp;<a title="'+ this.uri +'" href="'+ this.url +'">' + this.label + '</a> ';
-            } );
-            content = '<p class="'+ this.class +'">' + this.label + ':<br/> '+ content +'<p>';
-            $('#results').append(content).slideDown();
+            });
+            content += '</p>';
         });
+        $('#results').append(content).slideDown();
     }
 
     $('#void-suggest').click(function () {
         $('#results').addClass('is-processing')
-        $.getJSON(suggestUrl, function(jsonData) {renderSuggestions(jsonData); });
+        $.getJSON(voidUrl+'suggest', function(jsonData) {renderSuggestions(jsonData); });
     });
     $('#void-create').click(function () {
         $('#results').addClass('is-processing')
-        $.getJSON(createUrl, function(jsonData) {renderCreation(jsonData); });
+        $.getJSON(voidUrl+'create', function(jsonData) {renderCreation(jsonData); });
+    });
+    $('#void-clean').click(function () {
+        $('#results').addClass('is-processing')
+        $.getJSON(voidUrl+'clean', function(jsonData) {renderCleaning(jsonData); });
     });
 });
 </script>
@@ -58,6 +82,7 @@ $(document).ready(function() {
 <p>
 <a id="void-create"  class="minibutton">Create / Update</a>
 <a id="void-suggest" class="minibutton">Suggest</a>
+<a id="void-clean" class="minibutton">Clean</a>
 </p>
 <div id="results">
 </div>
