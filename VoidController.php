@@ -238,6 +238,10 @@ class VoidController extends OntoWiki_Controller_Component
         $return                = array();
         $return['categories']  = $this->_privateConfig->categories->toArray();
         $return['suggestions'] = $suggestions;
+
+        if (count($suggestions) == 0) {
+            $return['message'] = 'Congratulation, your dataset succeeded all tests.';
+        }
         return $return;
     }
 

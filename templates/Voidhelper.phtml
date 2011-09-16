@@ -49,6 +49,11 @@ $(document).ready(function() {
         var categories  = jsonData.categories;
         var suggestions = jsonData.suggestions;
 
+        // test for message part and output it as success
+        if(typeof jsonData.message != "undefined") {
+            content += '<p class="messagebox success">' + jsonData.message + '</p>';
+        }
+
         // go through property categories
         jQuery.each(suggestions, function(categoryName, properties) {
             var categoryClass = categories[categoryName].class;
